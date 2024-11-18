@@ -1,17 +1,17 @@
-import { createRouter, createMemoryHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import Create from '../domains/groceries/pages/Create.vue'
+import Delete from '../domains/groceries/pages/Delete.vue'
 import Edit from '../domains/groceries/pages/Edit.vue'
 import Overview from '../domains/groceries/pages/Overview.vue'
 
 const routes = [
-  {path: '/',       component: Overview},
-  {path: '/create', component: Create},
-  {path: '/edit',   component: Edit},
+  {name: 'overview', path: '/',           component: Overview},
+  {name: 'create',   path: '/create',     component: Create},
+  {name: 'edit',     path: '/edit/:id',   component: Edit},
+  {name: 'delete',   path: '/delete/:id', component: Delete},
 ]
 
-const router = createRouter({
-  history: createMemoryHistory(),
+export const router = createRouter({
+  history: createWebHistory(),
   routes
 })
-
-export default router

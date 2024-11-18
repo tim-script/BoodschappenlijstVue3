@@ -2,8 +2,8 @@
   <h1>Boodschappen</h1>
   <nav>
     <ul>
-      <li><RouterLink to="/">Home</RouterLink></li>
-      <li><RouterLink to="/create">Toevoegen</RouterLink></li>
+      <li><RouterLink :to="{name: 'overview'}">Home</RouterLink></li>
+      <li><RouterLink :to="{name: 'create'}">Toevoegen</RouterLink></li>
     </ul>
   </nav>
   <RouterView />
