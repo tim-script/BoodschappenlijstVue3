@@ -1,12 +1,6 @@
 <script setup>
   import { computed, ref } from 'vue'
-
-  const formattedPrice = (price) => {
-    return price.toLocaleString('nl-NL', {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    })
-  }
+  import { formatPrice } from './domains/groceries'
 
   const groceries = defineModel()
 
@@ -20,15 +14,15 @@
     <tbody>
       <tr v-for="grocery in groceries">
         <td class="name">{{grocery.name}}</td>
-        <td class="price">{{formattedPrice(grocery.price)}}</td>
+        <td class="price">{{formatPrice(grocery.price)}}</td>
         <td class="quantity"><input type="number" v-model="grocery.quantity"></td>
-        <td class="price">{{formattedPrice(grocery.price * grocery.quantity)}}</td>
+        <td class="price">{{formatPrice(grocery.price * grocery.quantity)}}</td>
         <td><RouterLink :to="{name: 'edit', params: { id: grocery.id }}">Bewerken</RouterLink></td>
         <td><RouterLink :to="{name: 'delete', params: { id: grocery.id }}">Verwijderen</RouterLink></td>
       </tr>
       <tr>
         <td colspan="3">Totaal</td>
-        <td class="price">{{formattedPrice(totalCost)}}</td>
+        <td class="price">{{formatPrice(totalCost)}}</td>
         <td colspan="2"></td>
       </tr>
     </tbody>

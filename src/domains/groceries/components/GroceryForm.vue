@@ -1,7 +1,12 @@
 <script setup>
-  defineEmits(['submit'])
+  const emit = defineEmits(['submit'])
 
   const props = defineProps(['grocery'])
+
+  const submit = () => {
+    props.grocery.price = parseFloat(props.grocery.price.replace(',', '.'))
+    emit('submit', props.grocery)
+  }
 </script>
 
 <template>
@@ -18,7 +23,7 @@
     <input id="quantity" name="quantity" type="number" v-model="grocery.quantity" required />
   </div>
   <div>
-    <button @click="$emit('submit', grocery)">Toevoegen</button>
+    <button @click="submit">Toevoegen</button>
   </div>
 </template>
 
